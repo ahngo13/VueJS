@@ -20,3 +20,11 @@ Model-ViewModel-View
     - Vanilla Javascript DOM 조작
 - 선언형 : 변화를 선언(그림 그리기)
     - 프레임워크를 통한 조작
+
+## II. Vue의 요소
+### 1. Directive(지시자)
+- `v-for` : 배열과 같은 데이터를 순회
+- `v-if` : 조건부 렌더링
+- `v-else` : 조건부 렌더링
+- `v-on` : 이벤트 바인딩(addEventListener) 
+- `v-model` : 양방향 데이터 바인딩
