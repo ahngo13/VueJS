@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Identicon 생성</h1>
+      <select v-model="size">
+            <option selected>크기 선택</option>
+            <option value="300">대</option>
+            <option value="200">중</option>
+            <option value="100">소</option>
+      </select>
+      <p>input: <input v-on:input="reload" v-model="newInput" type="text" /></p>
+      <!-- <p>input: <input @input="reload" v-model="newInput" type="text" /></p> -->
+      <p>
+        output:
+        <svg
+          v-bind:width="size"
+          v-bind:height="size"
+          v-bind:data-jdenticon-value="newInput"
+        ></svg>
+        <svg
+        :width="size"
+        :height="size"
+        :data-jdenticon-value="newInput"
+      ></svg>
+      </p>
+      <div>
+        <div v-text="test"></div>
+        jdenticon method를 활용한 svg 생성:
+        <div v-html="identicon()"></div>
+        {{identicon()}}
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jdenticon@2.2.0" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+    new Vue({
+        el: "#app",
+        data: {
+            newInput: "",
+            size:"100",
+            test: '<h1>hello</h1>'
+        },
+        methods:{
+            reload(){
+                jdenticon();
+            },
+            identicon(){
+              return jdenticon.toSvg(this.newInput, 80);
+            }
+        },
+        created:{
+
+        }           
+    });
+    </script>
+  </body>
+</html>

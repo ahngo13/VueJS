@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project2</title>
+</head>
+<body>
+
+    <div id="app">
+        <button v-on:click="getPost">getPosts</button>
+        <br>
+        <br>
+        <div v-html="dataList"></div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                dataList:""
+            },
+            methods:{
+                getPost(){
+                    axios
+                    .get("https://jsonplaceholder.typicode.com/posts")
+                    .then((returnData) => {
+                        const data = returnData.data;
+                        if (data.length > 0) {
+                            data.forEach((post) => {
+                            //   console.log(post);
+                            this.dataList += `<li><b>${post.title}</b> - ${post.body}</li>`;
+                            });
+                        } else {
+                            alert("데이터가 존재하지 않습니다.");
+                        }
+                    })
+                    .catch((err) => {
+                        alert("데이터 요청이 실패하였습니다. 다시 시도해주세요.");
+                    });
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

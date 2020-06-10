@@ -22,7 +22,7 @@
         <input type="text" v-model="newInput" v-on:keypress.enter="createTodo"><button v-on:click="createTodo">추가</button>
         <ul>
             <!-- <li v-for="todo in todos" v-if="!todo.isCompleted"> -->
-            <li v-bind:class="{completed : todo.isCompleted}" v-for="todo in todosByStatus">
+            <li v-bind:key="todo.id" v-bind:class="{completed : todo.isCompleted}" v-for="todo in todosByStatus">
             <input v-model="todo.isCompleted" type="checkbox"/>
                 {{todo.content}}
             </li>
@@ -47,11 +47,11 @@
                 name: 'john',
                 newInput: '',
                 todos: [
-                    {content: 'Vue JS 복습', isCompleted: true},
-                    {content: 'Vue JS 복습2', isCompleted: false},
-                    {content: 'Vue JS 복습3', isCompleted: false},
-                    {content: 'Vue JS 복습4', isCompleted: false},
-                    {content: 'Vue JS 복습5', isCompleted: false},
+                    {id: 1, content: 'Vue JS 복습', isCompleted: true},
+                    {id: 2, content: 'Vue JS 복습2', isCompleted: false},
+                    {id: 3, content: 'Vue JS 복습3', isCompleted: false},
+                    {id: 4, content: 'Vue JS 복습4', isCompleted: false},
+                    {id: 5, content: 'Vue JS 복습5', isCompleted: false},
                 ]
             },
             computed: {
@@ -63,7 +63,7 @@
                     if(this.status === 'showCompleted'){
                         return this.todos.filter(todo => todo.isCompleted);
                     }
-                    if(this.status === 'showIncomplete'){
+                    else if(this.status === 'showIncomplete'){
                         return this.todos.filter(todo => !todo.isCompleted)
                     }
 
@@ -82,6 +82,7 @@
                         return;
                     }else{
                         this.todos.push({
+                            id: new Date(),
                             content: this.newInput,
                             isCompleted: false,
                         })

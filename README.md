@@ -161,6 +161,34 @@ var app6 = new Vue({
 
 
 
+- `v-bind` : 속성값 설정 (:)
+- `v-text` : 데이터 렌더 (innerText) == `{{}}`
+- `v-html` : 데이터 렌더 (innerHTML)
+
+
+
+### 2. Vue Instance (객체)
+
+- `new Vue({})`
+- `el: '#app'` : 마운트 포인트
+- `data: {}` : 관리할 데이터
+- `methods: {}` : 함수
+- `computed: {}` : 함수화된 데이터
+
+- `watch: {} ` : 데이터 변경에 대한 콜백
+
+
+
+http://www.pythontutor.com/javascript.html#mode=edit
+
+
+
+#### 라이프 사이클 훅
+-  `created()` : 객체 생성 직후
+- `beforeMount` : 객체 생성 이전
+--- Mounted: DOM 보이기 시작
+
+
 #### 컴포넌트 정의 예제
 
 ~~~html
